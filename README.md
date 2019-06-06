@@ -1,6 +1,6 @@
 # Airfrance Booking Client
 
-This web application will allow the user to look for her/his bookings. It uses graphQL behind the scenes.
+This web application will allow the user to look for her/his AF bookings.
 After providing a valid booking number and family name the results will be displayed.
 
 ## Prerequisites
