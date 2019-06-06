@@ -4,7 +4,7 @@ This web application will allow the user to look for her/his AF bookings.
 After providing a valid booking number and family name the results will be displayed.
 
 ## Prerequisites
-The AF Booking server must be up and running. The client will get data from it. By default it will look for it on `localhost:4000`
+The [AF Booking server](https://github.com/guillermosnipe/airfrance-booking-server) must be up and running before starting this app. The client will get data from it. By default it will look for it on `localhost:4000`
 
 ## Installation
 After cloning the repo access the main folder and do `npm install`
