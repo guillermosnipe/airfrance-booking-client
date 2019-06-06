@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FindTripFormComponent } from './find-trip-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('FindTripFormComponent', () => {
   let component: FindTripFormComponent;
@@ -8,7 +9,8 @@ describe('FindTripFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FindTripFormComponent ]
+      declarations: [ FindTripFormComponent ],
+      imports: [ReactiveFormsModule, RouterTestingModule]
     })
     .compileComponents();
   }));

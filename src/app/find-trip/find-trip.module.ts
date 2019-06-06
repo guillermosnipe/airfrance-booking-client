@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Apollo } from 'apollo-angular';
 
 import { FindTripRoutingModule } from './find-trip-routing.module';
 import { FindTripComponent } from './find-trip/find-trip.component';
@@ -18,7 +19,8 @@ import { FindTripHeaderComponent } from './find-trip-header/find-trip-header.com
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FindTripRoutingModule
+    FindTripRoutingModule,
+    Apollo
   ]
 })
 export class FindTripModule { }
