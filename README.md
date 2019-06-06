@@ -10,7 +10,7 @@ The AF Booking server must be up and running. The client will get data from it. 
 After cloning the repo access the main folder and do `npm install`
 
 ## Running the app
-Run `npm start`after a successfull initialization the app will be available on `localhost:4200`
+Just run `npm start`. After a successfull initialization the app will be available on `localhost:4200`
 
 ## Questions
 If you need to reach me please feel free to do it `snipeglk@gmail.com`
