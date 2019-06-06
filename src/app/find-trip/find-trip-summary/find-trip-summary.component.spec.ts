@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FindTripSummaryComponent } from './find-trip-summary.component';
-import { ApolloTestingModule } from 'apollo-angular/testing';
+import { ApolloTestingModule, ApolloTestingController } from 'apollo-angular/testing';
 describe('FindTripSummaryComponent', () => {
   let component: FindTripSummaryComponent;
   let fixture: ComponentFixture<FindTripSummaryComponent>;
+  let controller: ApolloTestingController;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -12,6 +13,9 @@ describe('FindTripSummaryComponent', () => {
       imports: [RouterTestingModule, ApolloTestingModule]
     })
     .compileComponents();
+
+    // tslint:disable-next-line: deprecation
+    controller = TestBed.get(ApolloTestingController);
   }));
 
   beforeEach(() => {
@@ -22,5 +26,9 @@ describe('FindTripSummaryComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  afterEach( () => {
+    controller.verify();
   });
 });
