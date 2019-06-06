@@ -4,7 +4,11 @@
       Retrieve your booking<br />-<br />
     </h2>
     <div class="alert-box" role="alert" *ngIf="bookingForm.invalid && submitted">
-      Please complete all required fields
+      <p>Please complete all required fields. Check that you provided a valid booking number and Family Name.</p>
+      <p>
+      Booking Number examples: EGC234<br />
+      Family Name: Only letters are allowed
+      </p>
     </div>
     <p>
       You can find your booking by filling out your family name and the booking code in your booking confirmation
