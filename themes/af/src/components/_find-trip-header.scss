@@ -1,0 +1,15 @@
+[data-role='find-trip-header'] {
+  background-image: url('src/assets/find-trip/af_pattern_bg.png');
+  text-transform: uppercase;
+  color: $white;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+
+  // XS Devices
+  @media (max-width: 575.98px) {
+    height: 3.5em;
+    span {
+      padding: 0.5em 0;
+    }
+  }
+}

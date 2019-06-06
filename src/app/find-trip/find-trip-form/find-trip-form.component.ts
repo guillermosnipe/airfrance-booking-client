@@ -1,0 +1,28 @@
+import { Component, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'af-find-trip-form',
+  templateUrl: './find-trip-form.component.html'
+})
+export class FindTripFormComponent {
+  submitted = false;
+
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute) { }
+
+  bookingForm = this.fb.group({
+    bookingCode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(6), Validators.pattern(/[a-z2-9]+/gmi)]],
+    lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(/[a-z]+/gmi)]],
+  });
+
+  onSubmit() {
+    this.submitted = true;
+    // If invalid don't proceed
+    if (this.bookingForm.invalid) { return false; }
+    // Navigate to summary
+    this.router.navigate([this.bookingForm.value.bookingCode], { relativeTo: this.route });
+  }
+}

@@ -1,0 +1,26 @@
+<div data-role="find-trip-form">
+  <div>
+    <h2 class="mt-4 text-center">
+      Retrieve your booking<br />-<br />
+    </h2>
+    <div class="alert-box" role="alert" *ngIf="bookingForm.invalid && submitted">
+      Please complete all required fields
+    </div>
+    <p>
+      You can find your booking by filling out your family name and the booking code in your booking confirmation
+    </p>
+  </div>
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" [ngClass]="{'submitted': this.submitted}" novalidate>
+    <div class="form-group">
+      <label><b>Booking code</b></label>
+      <input type="text" formControlName="bookingCode" name="bookingCode" class="form-control">
+    </div>
+    <div class="form-group">
+      <label><b>Family name</b></label>
+      <input type="text" formControlName="lastName" name="lastName" class="form-control">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn text-center d-block">Retrieve Booking</button>
+    </div>
+  </form>
+</div>

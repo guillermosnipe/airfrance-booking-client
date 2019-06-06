@@ -1,0 +1,19 @@
+<div *ngIf="booking" data-role="find-trip-form">
+  <h2 class="text-center">Flight to {{ booking.destinationCity}}</h2>
+  <p>
+    Welcome {{ booking.title }} {{ booking.lastName | titlecase}}, find below all the information about your upcoming trip to {{ booking.destinationCity }}.
+  </p>
+
+  <p class="font-weight-bold text-uppercase">{{ booking.originCity }} - {{ booking.destinationCity}}
+  <br />Booking code {{ booking.bookingCode }}</p>
+
+  <p class="flight-schedule">
+    {{ booking.localScheduledDeparture }}<br />
+    <b>{{ booking.originCity }}, {{ booking.originAirport }}</b>
+  </p>
+  <p>{{ booking.localScheduledArrival }}<br />
+    <b>{{ booking.destinationCity }}, {{ booking.destinationAirport }}</b>
+  </p>
+  <button type="button" class="btn text-center d-block" [routerLink]="['/']">New Query</button>
+</div>
+<p *ngIf="loading">Loading...</p>
