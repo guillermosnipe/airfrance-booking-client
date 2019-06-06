@@ -1,4 +1,4 @@
-# Airfrance Booking Client
+# Airfrance Find My Trip app
 
 This web application will allow the user to look for her/his AF bookings.
 After providing a valid booking number and family name the results will be displayed.
