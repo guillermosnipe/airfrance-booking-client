@@ -17,3 +17,4 @@
   <button type="button" class="btn text-center d-block" [routerLink]="['/']">New Query</button>
 </div>
 <p *ngIf="loading">Loading...</p>
+<p *ngIf="error">{{ error | json }}</p>

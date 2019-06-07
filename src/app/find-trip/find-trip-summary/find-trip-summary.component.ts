@@ -58,7 +58,6 @@ export class FindTripSummaryComponent implements OnInit {
             this.booking = result.data.booking;
             this.loading = result.loading;
             this.error = result.errors;
-            console.log(this.booking);
           });
       }
     });
