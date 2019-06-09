@@ -8,14 +8,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FindTripFormComponent {
   submitted = false;
+  readonly bookingCodeRegex = /^(?:[02-9]+[a-z]|[a-z]+[02-9])[a-z02-9]+$/i;
+  readonly lastNameRegex = /^[a-z]+$/i;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute) { }
 
   bookingForm = this.fb.group({
-    bookingCode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(6), Validators.pattern(/[a-z2-9]+/gmi)]],
-    lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(/[a-z]+/gmi)]],
+    // tslint:disable-next-line:max-line-length
+    bookingCode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(6), Validators.pattern(this.bookingCodeRegex)]],
+    lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(this.lastNameRegex)]],
   });
 
   onSubmit() {
