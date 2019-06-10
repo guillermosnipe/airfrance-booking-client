@@ -18,7 +18,8 @@ export class FindTripSummaryComponent implements OnInit, OnDestroy {
   booking: any;
   loading = true;
   error: any;
-  querySubscription: Subscription;
+  private bookingCodeSubscription: Subscription;
+  private querySubscription: Subscription;
   private readonly bookingCode: Observable<
     string | null
   > = this.route.paramMap.pipe(
@@ -45,16 +46,17 @@ export class FindTripSummaryComponent implements OnInit, OnDestroy {
   constructor(private apollo: Apollo, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.querySubscription = this.bookingCode.subscribe((id: string | null) => {
+    this.bookingCodeSubscription = this.bookingCode.subscribe((id: string | null) => {
       if (id !== null) {
-        this.apollo
+        this.querySubscription = this.apollo
           .watchQuery<any>({
             query: this.BookingByID,
             variables: {
               bookingCode: id
             }
           })
-          .valueChanges.subscribe(result => {
+          .valueChanges
+          .subscribe(result => {
             this.booking = result.data.booking;
             this.loading = result.loading;
             this.error = result.errors;
@@ -64,6 +66,7 @@ export class FindTripSummaryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.bookingCodeSubscription.unsubscribe();
     this.querySubscription.unsubscribe();
   }
 }
