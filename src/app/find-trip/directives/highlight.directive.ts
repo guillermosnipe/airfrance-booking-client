@@ -6,8 +6,6 @@ import { Directive, Input, Renderer2, ElementRef, OnChanges } from '@angular/cor
 })
 export class HighlightDirective implements OnChanges {
   @Input() afSubmitted: string;
-  @Input() afPopover: any;
-  @Input() errors: any;
 
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 
