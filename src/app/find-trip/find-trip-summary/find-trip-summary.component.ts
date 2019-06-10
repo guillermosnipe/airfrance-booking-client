@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -14,7 +14,7 @@ export interface Booking {
   selector: 'af-find-trip-summary',
   templateUrl: './find-trip-summary.component.html'
 })
-export class FindTripSummaryComponent implements OnInit {
+export class FindTripSummaryComponent implements OnInit, OnDestroy {
   booking: any;
   loading = true;
   error: any;
@@ -45,7 +45,7 @@ export class FindTripSummaryComponent implements OnInit {
   constructor(private apollo: Apollo, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.bookingCode.subscribe((id: string | null) => {
+    this.querySubscription = this.bookingCode.subscribe((id: string | null) => {
       if (id !== null) {
         this.apollo
           .watchQuery<any>({
@@ -61,5 +61,9 @@ export class FindTripSummaryComponent implements OnInit {
           });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.querySubscription.unsubscribe();
   }
 }
