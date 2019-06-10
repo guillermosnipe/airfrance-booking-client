@@ -13,7 +13,7 @@ export class HighlightDirective implements OnChanges {
 
   ngOnChanges(): void {
     const el = this.renderer.selectRootElement(this.el.nativeElement);
-    if (el && el.classList.contains('ng-invalid') && el.focus) {
+    if (el && el.classList.contains('ng-invalid') && el.focus && this.afSubmitted) {
       setTimeout(() => el.focus());
     }
   }
