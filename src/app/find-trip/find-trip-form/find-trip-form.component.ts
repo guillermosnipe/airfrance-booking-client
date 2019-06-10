@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { FocusOnErrorDirective } from '../directives/focus-error.directive';
+import { map } from 'rxjs/Operators';
 
 @Component({
   selector: 'af-find-trip-form',
@@ -10,6 +11,7 @@ import { FocusOnErrorDirective } from '../directives/focus-error.directive';
 export class FindTripFormComponent implements OnInit {
   readonly bookingCodeRegex = /^(?:[02-9]+[a-z]|[a-z]+[02-9])[a-z02-9]+$/i;
   readonly lastNameRegex = /^[a-z]+$/i;
+  error: string;
   bookingForm: FormGroup;
   submitted = false;
 
@@ -32,6 +34,9 @@ export class FindTripFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.route.queryParams.subscribe(params => this.error = params.error);
+
     this.bookingForm = this.fb.group({
       // tslint:disable-next-line:max-line-length
       bookingCode: [

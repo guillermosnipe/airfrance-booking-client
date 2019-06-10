@@ -6,6 +6,9 @@
     <div class="alert-box" role="alert" *ngIf="bookingForm.invalid && submitted">
       <p class="mb-0">Please complete all required fields. Check that you provided a valid booking number and Family Name.</p>
     </div>
+    <div class="alert-box" role="alert" *ngIf="error">
+      <p class="mb-0">We're experiencing some technical issues, please try again later [ERR: Network issue]</p>
+    </div>
     <p>
       You can find your booking by filling out your family name and the booking code in your booking confirmation
     </p>
