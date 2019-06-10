@@ -4,27 +4,31 @@
       Retrieve your booking<br />-<br />
     </h2>
     <div class="alert-box" role="alert" *ngIf="bookingForm.invalid && submitted">
-      <p>Please complete all required fields. Check that you provided a valid booking number and Family Name.</p>
-      <p>
-      Booking Number examples: EGC234<br />
-      Family Name: Only letters are allowed
-      </p>
+      <p class="mb-0">Please complete all required fields. Check that you provided a valid booking number and Family Name.</p>
     </div>
     <p>
       You can find your booking by filling out your family name and the booking code in your booking confirmation
     </p>
   </div>
-  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" [ngClass]="{ 'submitted': this.submitted }" novalidate role="form">
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" [ngClass]="{ 'submitted': this.submitted }" role="form" novalidate>
     <div class="form-group">
       <label for="bookingCode"><b>Booking code</b></label>
       <input
+        autofocus
         type="text"
         formControlName="bookingCode"
         id="bookingCode"
         name="bookingCode"
         class="form-control"
         aria-label="bookingCode"
-        aria-required="true">
+        aria-required="true"
+        afHighlight
+        [afSubmitted]="submitted"
+        #tooltip="ngbTooltip"
+        triggers="focus:blur"
+        [autoClose]="false"
+        ngbTooltip="Booking code. Numbers and letters except 1. Example: EGC234"
+        placement="right">
     </div>
     <div class="form-group">
       <label for="lastName"><b>Family name</b></label>
@@ -35,7 +39,14 @@
         name="lastName"
         class="form-control"
         aria-label="lastName"
-        aria-required="true">
+        aria-required="true"
+        afHighlight
+        [afSubmitted]="submitted"
+        #tooltip="ngbTooltip"
+        triggers="focus:blur"
+        [autoClose]="false"
+        ngbTooltip="Last Name. Only numbers"
+        placement="right">
     </div>
     <div class="form-group">
       <button

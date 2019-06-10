@@ -1,25 +1,28 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'af-find-trip-form',
   templateUrl: './find-trip-form.component.html'
 })
-export class FindTripFormComponent {
-  submitted = false;
+export class FindTripFormComponent implements OnInit {
   readonly bookingCodeRegex = /^(?:[02-9]+[a-z]|[a-z]+[02-9])[a-z02-9]+$/i;
   readonly lastNameRegex = /^[a-z]+$/i;
+  bookingForm: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute) { }
 
-  bookingForm = this.fb.group({
-    // tslint:disable-next-line:max-line-length
-    bookingCode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(6), Validators.pattern(this.bookingCodeRegex)]],
-    lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(this.lastNameRegex)]],
-  });
+  ngOnInit(): void {
+    this.bookingForm = this.fb.group({
+      // tslint:disable-next-line:max-line-length
+      bookingCode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(6), Validators.pattern(this.bookingCodeRegex)]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(this.lastNameRegex)]],
+    });
+  }
 
   onSubmit() {
     this.submitted = true;
