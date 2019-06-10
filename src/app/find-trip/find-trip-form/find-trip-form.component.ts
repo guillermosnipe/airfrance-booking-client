@@ -22,7 +22,6 @@ export class FindTripFormComponent implements OnInit {
   @ViewChildren(FocusOnErrorDirective)
   fields: QueryList<FocusOnErrorDirective>;
   check() {
-    console.log('Check!');
     const fields = this.fields.toArray();
     for (const field of fields) {
       if (field.invalid) {

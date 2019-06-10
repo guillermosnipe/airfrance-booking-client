@@ -4,8 +4,4 @@ import { Component } from '@angular/core';
   selector: 'af-find-trip',
   templateUrl: './find-trip.component.html',
 })
-export class FindTripComponent {
-  readMessage() {
-    console.log('Submit event received!');
-  }
-}
+export class FindTripComponent { }

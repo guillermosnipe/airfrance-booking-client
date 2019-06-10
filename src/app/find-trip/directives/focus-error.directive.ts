@@ -15,7 +15,5 @@ export class FocusOnErrorDirective {
   public focus() {
     this.el.nativeElement.focus();
   }
-  constructor(@Optional() private control: NgControl, private el: ElementRef) {
-    console.log('directive created');
-  }
+  constructor(@Optional() private control: NgControl, private el: ElementRef) { }
 }
