@@ -47,18 +47,18 @@ export class FindTripSummaryComponent implements OnInit {
   ngOnInit() {
     this.bookingCode.subscribe((id: string | null) => {
       if (id !== null) {
-        this.apollo
-          .watchQuery<any>({
-            query: this.BookingByID,
-            variables: {
-              bookingCode: id
-            }
-          })
-          .valueChanges.subscribe(result => {
-            this.booking = result.data.booking;
-            this.loading = result.loading;
-            this.error = result.errors;
-          });
+  this.apollo
+    .watchQuery<any>({
+      query: this.BookingByID,
+      variables: {
+        bookingCode: id
+      }
+    })
+    .valueChanges.subscribe(result => {
+      this.booking = result.data.booking;
+      this.loading = result.loading;
+      this.error = result.errors;
+    });
       }
     });
   }
