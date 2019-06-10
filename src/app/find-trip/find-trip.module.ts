@@ -8,7 +8,7 @@ import { FindTripComponent } from './find-trip/find-trip.component';
 import { FindTripFormComponent } from './find-trip-form/find-trip-form.component';
 import { FindTripSummaryComponent } from './find-trip-summary/find-trip-summary.component';
 import { FindTripHeaderComponent } from './find-trip-header/find-trip-header.component';
-import { HighlightDirective } from './directives/highlight.directive';
+import { FocusOnErrorDirective } from './directives/focus-error.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     FindTripFormComponent,
     FindTripSummaryComponent,
     FindTripHeaderComponent,
-    HighlightDirective,
+    FocusOnErrorDirective,
   ],
   imports: [
     CommonModule,
@@ -25,7 +25,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     NgbTooltipModule,
   ],
   exports: [
-    HighlightDirective
+    FocusOnErrorDirective
   ]
 })
 export class FindTripModule { }

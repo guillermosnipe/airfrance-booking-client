@@ -22,8 +22,7 @@
         class="form-control"
         aria-label="bookingCode"
         aria-required="true"
-        afHighlight
-        [afSubmitted]="submitted"
+        afFocusOnError
         #tooltip="ngbTooltip"
         triggers="focus:blur"
         [autoClose]="false"
@@ -40,8 +39,7 @@
         class="form-control"
         aria-label="lastName"
         aria-required="true"
-        afHighlight
-        [afSubmitted]="submitted"
+        afFocusOnError
         #tooltip="ngbTooltip"
         triggers="focus:blur"
         [autoClose]="false"
