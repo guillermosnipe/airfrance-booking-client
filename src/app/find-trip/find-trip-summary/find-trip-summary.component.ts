@@ -43,7 +43,6 @@ export class FindTripSummaryComponent implements OnInit, OnDestroy {
   query: Observable<ApolloQueryResult<any>> = this.bookingCode
     .pipe(
       switchMap((id: string) => {
-        console.log(`id: ${id}`);
         return this.getBooking(id);
       })
     );
