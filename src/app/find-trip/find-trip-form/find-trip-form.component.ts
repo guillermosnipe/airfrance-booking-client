@@ -12,7 +12,7 @@ export class FindTripFormComponent implements OnInit, OnDestroy {
   readonly bookingCodeRegex = /^(?:[02-9]+[a-z]|[a-z]+[02-9])[a-z02-9]+$/i;
   readonly lastNameRegex = /^[a-z]+$/i;
   errors: Subscription;
-  error: string;
+  serverErrors: string;
   bookingForm: FormGroup;
   submitted = false;
 
@@ -36,7 +36,7 @@ export class FindTripFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.errors = this.route.queryParams.subscribe(params => this.error = params.error);
+    this.errors = this.route.queryParams.subscribe(params => this.serverErrors = params.serverErrors);
 
     this.bookingForm = this.fb.group({
       // tslint:disable-next-line:max-line-length

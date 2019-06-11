@@ -39,7 +39,7 @@ export class AppModule {
     const http = httpLink.create({ uri: 'http://localhost:4000' });
     const errorLink = onError(({ networkError }) => {
       if (networkError) {
-        const queryParams: Params = { error: 'networkError' };
+        const queryParams: Params = { serverErrors: 'networkError' };
         this.router.navigate(['check-in'], { relativeTo: route, queryParams });
       }
     });
