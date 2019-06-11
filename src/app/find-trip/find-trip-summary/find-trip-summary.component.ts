@@ -15,10 +15,13 @@ export interface Booking {
   templateUrl: './find-trip-summary.component.html'
 })
 export class FindTripSummaryComponent implements OnInit, OnDestroy {
+
+  constructor(private apollo: Apollo, private route: ActivatedRoute) {}
+
   booking: any;
-  loading = true;
+  loading: boolean;
   error: any;
-  private BookingByID: Query = gql`
+  BookingByID: Query = gql`
     query GetBookingById($bookingCode: ID!) {
       booking(bookingCode: $bookingCode) {
         bookingCode
@@ -37,24 +40,26 @@ export class FindTripSummaryComponent implements OnInit, OnDestroy {
   private readonly bookingCode: Observable<string> = this.route.paramMap.pipe(
     map((params: ParamMap) => params.get('bookingCode') || '')
   );
-  private query: Observable<ApolloQueryResult<any>> = this.bookingCode
+  query: Observable<ApolloQueryResult<any>> = this.bookingCode
     .pipe(
       switchMap((id: string) => {
         console.log(`id: ${id}`);
-        return this.apollo.watchQuery<any>({
-          query: this.BookingByID,
-          variables: {
-            bookingCode: id
-          }
-        }).valueChanges;
+        return this.getBooking(id);
       })
     );
   private querySubscription: Subscription;
 
-  constructor(private apollo: Apollo, private route: ActivatedRoute) {}
+  getBooking(id: string) {
+    return this.apollo.watchQuery<any>({
+      query: this.BookingByID,
+      variables: {
+        bookingCode: id
+      }
+    }).valueChanges;
+  }
 
   ngOnInit(): void {
-    this.querySubscription = this.query.subscribe(result => {
+    this.querySubscription = this.query.subscribe( (result) => {
       this.booking = result.data.booking;
       this.loading = result.loading;
       this.error = result.errors;
