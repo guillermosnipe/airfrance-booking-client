@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map, switchMap } from 'rxjs/Operators';
+import { map } from 'rxjs/Operators';
 import { Observable } from 'rxjs';
 import { Subscription } from 'apollo-client/util/Observable';
 

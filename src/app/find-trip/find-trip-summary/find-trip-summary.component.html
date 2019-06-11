@@ -16,5 +16,5 @@
   </p>
   <button type="button" class="btn text-center d-block" [routerLink]="['/']">New Query</button>
 </div>
-<p *ngIf="loading">Loading...</p>
-<p *ngIf="error">{{ error | json }}</p>
+<p *ngIf="loading" data-role="find-trip-form">Loading...</p>
+<p *ngIf="error" data-role="find-trip-form">{{ error | json }}</p>
