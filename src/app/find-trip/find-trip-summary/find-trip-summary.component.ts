@@ -3,8 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/Operators';
-import { Observable } from 'rxjs';
-import { Subscription } from 'apollo-client/util/Observable';
+import { Observable, Subscription } from 'rxjs';
 
 export interface Booking {
   data?: { booking: any };
