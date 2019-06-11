@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import { Apollo, Query } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map } from 'rxjs/Operators';
+import { map, switchMap } from 'rxjs/Operators';
 import { Observable, Subscription } from 'rxjs';
+import { ApolloQueryResult } from 'apollo-client';
 
 export interface Booking {
   data?: { booking: any };
@@ -17,15 +18,7 @@ export class FindTripSummaryComponent implements OnInit, OnDestroy {
   booking: any;
   loading = true;
   error: any;
-  private bookingCodeSubscription: Subscription;
-  private querySubscription: Subscription;
-  private readonly bookingCode: Observable<
-    string | null
-  > = this.route.paramMap.pipe(
-    map((params: ParamMap) => params.get('bookingCode'))
-  );
-
-  private BookingByID = gql`
+  private BookingByID: Query = gql`
     query GetBookingById($bookingCode: ID!) {
       booking(bookingCode: $bookingCode) {
         bookingCode
@@ -41,31 +34,34 @@ export class FindTripSummaryComponent implements OnInit, OnDestroy {
       }
     }
   `;
+  private readonly bookingCode: Observable<string> = this.route.paramMap.pipe(
+    map((params: ParamMap) => params.get('bookingCode') || '')
+  );
+  private query: Observable<ApolloQueryResult<any>> = this.bookingCode
+    .pipe(
+      switchMap((id: string) => {
+        console.log(`id: ${id}`);
+        return this.apollo.watchQuery<any>({
+          query: this.BookingByID,
+          variables: {
+            bookingCode: id
+          }
+        }).valueChanges;
+      })
+    );
+  private querySubscription: Subscription;
 
   constructor(private apollo: Apollo, private route: ActivatedRoute) {}
 
-  ngOnInit() {
-    this.bookingCodeSubscription = this.bookingCode.subscribe((id: string | null) => {
-      if (id !== null) {
-        this.querySubscription = this.apollo
-          .watchQuery<any>({
-            query: this.BookingByID,
-            variables: {
-              bookingCode: id
-            }
-          })
-          .valueChanges
-          .subscribe(result => {
-            this.booking = result.data.booking;
-            this.loading = result.loading;
-            this.error = result.errors;
-          });
-      }
+  ngOnInit(): void {
+    this.querySubscription = this.query.subscribe(result => {
+      this.booking = result.data.booking;
+      this.loading = result.loading;
+      this.error = result.errors;
     });
   }
 
   ngOnDestroy(): void {
-    this.bookingCodeSubscription.unsubscribe();
     this.querySubscription.unsubscribe();
   }
 }
