@@ -65,7 +65,7 @@ export class FindTripFormComponent implements OnInit, OnDestroy {
     this.submitted = true;
     // If invalid don't proceed
     if (this.bookingForm.invalid) {
-      this.check();
+      this.check(); // Focus invalid inputs
       return false;
     }
     // Navigate to summary
