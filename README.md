@@ -14,3 +14,15 @@ Just run `npm start`. After a successfull initialization the app will be availab
 
 ## Questions
 If you need to reach me please feel free to do it `snipeglk@gmail.com`
+
+## Release notes
+
+* 1.1.0:
+  - Network errors are properly managed now. The user will be redirected to the check-in view. A message will be also displayed.
+  - Regexp improvements
+  - Input fields will be focused when a validation error occurs
+  - Ng Bootstrap tooltips were implemented to display validation errors.
+  - Missing observables unsubscriptions were added
+  - Accesibility improvements
+  
+* 1.0: Initial Release
