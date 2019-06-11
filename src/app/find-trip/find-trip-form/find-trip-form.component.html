@@ -26,11 +26,16 @@
         aria-label="bookingCode"
         aria-required="true"
         afFocusOnError
-        #tooltip="ngbTooltip"
+        #bookingCodeTooltip="ngbTooltip"
         triggers="focus:blur"
         [autoClose]="false"
-        ngbTooltip="Booking code. Numbers and letters except 1. Example: EGC234"
+        [ngbTooltip]="bookingCodeTooltipContent"
         placement="right">
+      <ng-template #bookingCodeTooltipContent>
+        Booking code.<br />
+        Numbers and letters except 1.<br />
+        Example: EGC234
+      </ng-template>
     </div>
     <div class="form-group">
       <label for="lastName"><b>Family name</b></label>
@@ -46,8 +51,13 @@
         #tooltip="ngbTooltip"
         triggers="focus:blur"
         [autoClose]="false"
-        ngbTooltip="Last Name. Only numbers"
+        [ngbTooltip]="lastNameTooltipContent"
         placement="right">
+      <ng-template #lastNameTooltipContent>
+        Family Name<br />
+        Only letters are allowed.<br />
+        Example: Dupont
+      </ng-template>
     </div>
     <div class="form-group">
       <button
