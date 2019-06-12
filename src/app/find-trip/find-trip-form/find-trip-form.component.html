@@ -13,7 +13,7 @@
       You can find your booking by filling out your family name and the booking code in your booking confirmation
     </p>
   </div>
-  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" [ngClass]="{ 'submitted': this.submitted }" role="form" novalidate>
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit(bookingForm.value)" [ngClass]="{ 'submitted': this.submitted }" role="form" novalidate>
     <div class="form-group">
       <label for="bookingCode"><b>Booking code</b></label>
       <input

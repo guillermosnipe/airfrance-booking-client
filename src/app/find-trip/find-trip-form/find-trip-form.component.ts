@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FocusOnErrorDirective } from '../directives/focus-error.directive';
@@ -9,6 +9,7 @@ import { Subscription } from 'apollo-client/util/Observable';
   templateUrl: './find-trip-form.component.html'
 })
 export class FindTripFormComponent implements OnInit, OnDestroy {
+  @Output() formSubmitted = new EventEmitter();
   readonly bookingCodeRegex = /^(?:[02-9]+[a-z]|[a-z]+[02-9])[a-z02-9]+$/i;
   readonly lastNameRegex = /^[a-z]+$/i;
   errors: Subscription;
@@ -61,13 +62,16 @@ export class FindTripFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit() {
+  onSubmit({ bookingCode, lastName }) {
     this.submitted = true;
     // If invalid don't proceed
     if (this.bookingForm.invalid) {
       this.check(); // Focus invalid inputs
       return false;
     }
+    // Output the values
+    this.formSubmitted.emit({ bookingCode, lastName });
+
     // Navigate to summary
     this.router.navigate([this.bookingForm.value.bookingCode], {
       relativeTo: this.route
@@ -75,6 +79,8 @@ export class FindTripFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.errors.unsubscribe();
+    if (this.errors) {
+      this.errors.unsubscribe();
+    }
   }
 }
