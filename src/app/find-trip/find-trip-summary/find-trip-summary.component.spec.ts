@@ -8,7 +8,6 @@ export interface Booking {
   lastName: string;
 }
 
-
 describe('FindTripSummaryComponent', () => {
   let component: FindTripSummaryComponent;
   let fixture: ComponentFixture<FindTripSummaryComponent>;
@@ -18,8 +17,7 @@ describe('FindTripSummaryComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ FindTripSummaryComponent ],
       imports: [RouterTestingModule, ApolloTestingModule]
-    })
-    .compileComponents();
+    });
 
     // tslint:disable-next-line: deprecation
     controller = TestBed.get(ApolloTestingController);
@@ -31,7 +29,7 @@ describe('FindTripSummaryComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
@@ -60,9 +58,7 @@ describe('FindTripSummaryComponent', () => {
         },
       }
     });
-  });
 
-  afterEach( () => {
     controller.verify();
   });
 });
