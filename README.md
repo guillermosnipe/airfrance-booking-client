@@ -17,6 +17,8 @@ If you need to reach me please feel free to do it `snipeglk@gmail.com`
 
 ## Release notes
 
+* 1.1.2: Form Unit Tests added.
+
 * 1.1.1: GraphQL query tests added.
 
 * 1.1.0:
