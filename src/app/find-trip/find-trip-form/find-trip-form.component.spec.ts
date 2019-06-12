@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FindTripFormComponent } from './find-trip-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('FindTripFormComponent', () => {
   let component: FindTripFormComponent;
@@ -10,7 +11,7 @@ describe('FindTripFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FindTripFormComponent ],
-      imports: [ReactiveFormsModule, RouterTestingModule]
+      imports: [ReactiveFormsModule, RouterTestingModule,NgbTooltipModule]
     })
     .compileComponents();
   }));
@@ -22,7 +23,7 @@ describe('FindTripFormComponent', () => {
   });
 
   // TODO: Add ngbtooltip
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
